@@ -20,7 +20,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: [],
+  plugins: ['~/plugins/socketio'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
@@ -37,7 +37,14 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/proxy',
   ],
+
+  proxy: {
+    '/socket.io': {
+      target: 'http://localhost:3001',
+    },
+  },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {},
@@ -58,6 +65,9 @@ export default {
           success: colors.green.accent3,
         },
       },
+    },
+    defaultAssets: {
+      icons: 'fa',
     },
   },
 
