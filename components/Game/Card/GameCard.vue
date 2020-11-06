@@ -1,11 +1,11 @@
 <template>
   <v-card>
     <v-card-title>
-      img
+      20
       <v-spacer />
       Test
       <v-spacer />
-      img
+      10
     </v-card-title>
     <v-card-text class="pa-0">
       <v-img

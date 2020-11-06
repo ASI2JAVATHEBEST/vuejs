@@ -1,11 +1,15 @@
 <template>
   <v-card>
     <v-card-title>
-      <v-icon>fa-user</v-icon>
+      <v-badge inline right content="2">
+        <v-icon>fa-heart</v-icon>
+      </v-badge>
       <v-spacer />
       CARTE
       <v-spacer />
-      <v-icon>fa-user</v-icon>
+      <v-badge left inline content="3" overlap>
+        <v-icon>fa-bolt</v-icon>
+      </v-badge>
     </v-card-title>
     <v-card-text class="pa-0">
       <v-img
