@@ -1,19 +1,38 @@
 <template>
-  <v-card>
+  <v-card @click="selectCard({ id: user, card })">
     <v-card-title>
-      20
       <v-spacer />
-      Test
+      {{ card.name }}
       <v-spacer />
-      10
     </v-card-title>
     <v-card-text class="pa-0">
-      <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        src="https://picsum.photos/id/11/500/300"
-      />
+      <v-img :src="card.image" height="100px" contain />
     </v-card-text>
+    <v-card-actions>
+      {{ card.currentHp }}
+      <v-spacer />
+      {{ card.currentEnergy }}
+    </v-card-actions>
   </v-card>
 </template>
 
-<script></script>
+<script>
+import { call } from 'vuex-pathify'
+export default {
+  props: {
+    card: {
+      type: Object,
+      default: () => {
+        return {}
+      },
+    },
+    user: {
+      type: String,
+      default: () => '',
+    },
+  },
+  methods: {
+    ...call('game/', ['selectCard']),
+  },
+}
+</script>

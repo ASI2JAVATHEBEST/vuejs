@@ -17,12 +17,13 @@ const actions = {
       commit('pushMessages', msg)
     })
   },
-  sendMessage({ state }) {
+  sendMessage({ state, dispatch }) {
     this._vm.$socket.client.emit('chatMessage', {
       id: this._vm.$socket.client.id,
       message: state.message,
       username: state.username,
     })
+    dispatch('setMessage', '')
   },
 }
 

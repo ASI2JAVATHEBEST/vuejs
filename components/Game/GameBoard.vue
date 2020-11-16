@@ -17,15 +17,26 @@
     </v-col>
     <v-col cols="7" style="border: solid 1px">
       <v-row>
-        <v-col cols="4">
-          <game-card />
+        <v-col v-for="card in user.cards" :key="card.id" cols="4">
+          <game-card :card="card" :user="user.id" />
         </v-col>
       </v-row>
     </v-col>
     <v-col cols="3">
-      <game-card-details />
+      <game-card-details :user="user.id" />
     </v-col>
   </v-row>
 </template>
 
-<script></script>
+<script>
+export default {
+  props: {
+    user: {
+      type: Object,
+      default: () => {
+        return {}
+      },
+    },
+  },
+}
+</script>

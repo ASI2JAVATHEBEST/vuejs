@@ -62,21 +62,23 @@
     <v-col cols="8">
       <v-row no-gutters>
         <v-col cols="12">
-          <game-board />
+          <game-board :user="room.user2" />
         </v-col>
         <v-col cols="12">
           <v-row>
             <v-col cols="2">
-              <v-btn block>End Turn</v-btn>
+              <v-btn block :loading="!isMyTurn" color="error" @click="endTurn">
+                End Turn
+              </v-btn>
             </v-col>
             <v-col cols="7"></v-col>
             <v-col cols="3">
-              <v-btn block>Attack</v-btn>
+              <v-btn block :loading="!isMyTurn" color="success">Attack</v-btn>
             </v-col>
           </v-row>
         </v-col>
         <v-col cols="12">
-          <game-board />
+          <game-board :user="room.user1" />
         </v-col>
       </v-row>
     </v-col>
@@ -88,13 +90,16 @@ import { get, call, sync } from 'vuex-pathify'
 export default {
   computed: {
     ...get('chat/', ['messages']),
+    ...get('game/', ['room', 'isMyTurn']),
     ...sync('chat/', ['message', 'username']),
   },
   mounted() {
     this.$store.dispatch('chat/initSocket')
+    this.$store.dispatch('game/initSocket')
   },
   methods: {
     ...call('chat/', ['sendMessage']),
+    ...call('game/', ['endTurn']),
   },
 }
 </script>
