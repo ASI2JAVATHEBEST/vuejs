@@ -7,11 +7,8 @@
             <v-col cols="12" class="text-center">
               <v-icon>fa-user</v-icon>
             </v-col>
-            <v-col cols="12" class="text-center">Stephane</v-col>
+            <v-col cols="12" class="text-center">{{ name(user.id) }}</v-col>
           </v-row>
-        </v-col>
-        <v-col cols="12" class="pt-5">
-          <v-progress-linear indeterminate rounded height="10" />
         </v-col>
       </v-row>
     </v-col>
@@ -29,6 +26,8 @@
 </template>
 
 <script>
+import { get } from 'vuex-pathify'
+
 export default {
   props: {
     user: {
@@ -37,6 +36,9 @@ export default {
         return {}
       },
     },
+  },
+  computed: {
+    ...get('game/', ['name']),
   },
 }
 </script>

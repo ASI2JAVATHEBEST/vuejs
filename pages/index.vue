@@ -73,7 +73,15 @@
             </v-col>
             <v-col cols="7"></v-col>
             <v-col cols="3">
-              <v-btn block :loading="!isMyTurn" color="success">Attack</v-btn>
+              <v-btn
+                block
+                :loading="!isMyTurn"
+                color="success"
+                :disabled="isMyTurn && !canAttack"
+                @click="attack"
+              >
+                Attack
+              </v-btn>
             </v-col>
           </v-row>
         </v-col>
@@ -82,6 +90,7 @@
         </v-col>
       </v-row>
     </v-col>
+    <card-dialog />
   </v-row>
 </template>
 
@@ -90,16 +99,17 @@ import { get, call, sync } from 'vuex-pathify'
 export default {
   computed: {
     ...get('chat/', ['messages']),
-    ...get('game/', ['room', 'isMyTurn']),
+    ...get('game/', ['room', 'isMyTurn', 'canAttack']),
     ...sync('chat/', ['message', 'username']),
   },
   mounted() {
     this.$store.dispatch('chat/initSocket')
     this.$store.dispatch('game/initSocket')
+    this.$store.dispatch('game/end')
   },
   methods: {
     ...call('chat/', ['sendMessage']),
-    ...call('game/', ['endTurn']),
+    ...call('game/', ['endTurn', 'attack']),
   },
 }
 </script>
