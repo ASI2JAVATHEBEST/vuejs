@@ -4,12 +4,16 @@
       <v-card class="d-flex flex-column" height="100%">
         <v-card-title>
           <v-row no-gutters>
-            <v-col cols="6"> Chat </v-col>
+            <v-col cols="6">
+              Chat
+            </v-col>
             <v-col cols="5">
               {{ username }}
             </v-col>
             <v-col cols="1" align-self="center">
-              <v-icon class="pl-2">fa-user</v-icon>
+              <v-icon class="pl-2">
+                fa-user
+              </v-icon>
             </v-col>
           </v-row>
         </v-card-title>
@@ -52,8 +56,9 @@
                 class="rounded-l"
                 block
                 @click="sendMessage"
-                >Send</v-btn
               >
+                Send
+              </v-btn>
             </v-col>
           </v-row>
         </v-card-actions>
@@ -71,7 +76,7 @@
                 End Turn
               </v-btn>
             </v-col>
-            <v-col cols="7"></v-col>
+            <v-col cols="7" />
             <v-col cols="3">
               <v-btn
                 block
@@ -100,16 +105,16 @@ export default {
   computed: {
     ...get('chat/', ['messages']),
     ...get('game/', ['room', 'isMyTurn', 'canAttack']),
-    ...sync('chat/', ['message', 'username']),
+    ...sync('chat/', ['message', 'username'])
   },
-  mounted() {
+  mounted () {
     this.$store.dispatch('chat/initSocket')
     this.$store.dispatch('game/initSocket')
     this.$store.dispatch('game/end')
   },
   methods: {
     ...call('chat/', ['sendMessage']),
-    ...call('game/', ['endTurn', 'attack']),
-  },
+    ...call('game/', ['endTurn', 'attack'])
+  }
 }
 </script>

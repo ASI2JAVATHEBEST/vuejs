@@ -24,15 +24,15 @@ export default {
       type: Object,
       default: () => {
         return {}
-      },
+      }
     },
     user: {
       type: String,
-      default: () => '',
-    },
+      default: () => ''
+    }
   },
   methods: {
-    ...call('game/', ['selectCard']),
-  },
+    ...call('game/', ['selectCard'])
+  }
 }
 </script>

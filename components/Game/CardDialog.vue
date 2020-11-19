@@ -13,7 +13,7 @@ import { sync, get } from 'vuex-pathify'
 export default {
   computed: {
     ...sync('game/', ['endDialog']),
-    ...get('game/', ['winner']),
-  },
+    ...get('game/', ['winner'])
+  }
 }
 </script>

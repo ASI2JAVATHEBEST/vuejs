@@ -7,7 +7,9 @@
             <v-col cols="12" class="text-center">
               <v-icon>fa-user</v-icon>
             </v-col>
-            <v-col cols="12" class="text-center">{{ name(user.id) }}</v-col>
+            <v-col cols="12" class="text-center">
+              {{ name(user.id) }}
+            </v-col>
           </v-row>
         </v-col>
       </v-row>
@@ -34,11 +36,11 @@ export default {
       type: Object,
       default: () => {
         return {}
-      },
-    },
+      }
+    }
   },
   computed: {
-    ...get('game/', ['name']),
-  },
+    ...get('game/', ['name'])
+  }
 }
 </script>

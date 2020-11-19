@@ -5,7 +5,7 @@ const state = () => {
     messages: [],
     message: '',
     username: 'Utilisateur',
-    user: '',
+    user: ''
   }
 }
 
@@ -13,7 +13,7 @@ const getters = {}
 
 const actions = {
   ...make.actions(state),
-  initSocket({ dispatch, commit }) {
+  initSocket ({ dispatch, commit }) {
     this._vm.$socket.$subscribe('chatMessage', (msg, cb) => {
       commit('pushMessages', msg)
     })
@@ -24,10 +24,10 @@ const actions = {
 
     this.$axios.$get('cards_list/' + localStorage.id).then((cards) => {
       const promises = []
-      cards.forEach((card) =>
+      cards.forEach(card =>
         promises.push(
-          new Promise((resolve) =>
-            this.$axios.$get('cards/' + card.id).then((data) => resolve(data))
+          new Promise(resolve =>
+            this.$axios.$get('cards/' + card.id).then(data => resolve(data))
           )
         )
       )
@@ -36,31 +36,31 @@ const actions = {
         this._vm.$socket.client.emit('setCards', {
           id: this._vm.$socket.client.id,
           cards,
-          me: state.me,
+          me: state.me
         })
       })
     })
   },
-  sendMessage({ state, dispatch }) {
+  sendMessage ({ state, dispatch }) {
     this._vm.$socket.client.emit('chatMessage', {
       id: this._vm.$socket.client.id,
       message: state.message,
-      username: state.username,
+      username: state.username
     })
     dispatch('setMessage', '')
-  },
+  }
 }
 
 const mutations = {
   ...make.mutations(state),
-  pushMessages(state, msg) {
+  pushMessages (state, msg) {
     state.messages.push(msg)
-  },
+  }
 }
 
 export default {
   state,
   mutations,
   actions,
-  getters,
+  getters
 }

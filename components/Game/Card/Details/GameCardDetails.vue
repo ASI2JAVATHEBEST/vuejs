@@ -43,11 +43,11 @@ export default {
   props: {
     user: {
       type: String,
-      default: () => '',
-    },
+      default: () => ''
+    }
   },
   computed: {
-    ...get('game/', ['selectedCard']),
-  },
+    ...get('game/', ['selectedCard'])
+  }
 }
 </script>

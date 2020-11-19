@@ -4,7 +4,9 @@
       <v-col cols="4" offset="1">
         <v-icon>{{ icon }}</v-icon>
       </v-col>
-      <v-col align-self="center" cols="7" class="h4"> {{ value }} </v-col>
+      <v-col align-self="center" cols="7" class="h4">
+        {{ value }}
+      </v-col>
     </v-row>
   </v-col>
 </template>
@@ -14,12 +16,12 @@ export default {
   props: {
     icon: {
       type: String,
-      default: () => 'fa-user',
+      default: () => 'fa-user'
     },
     value: {
       type: Number,
-      default: () => 0,
-    },
-  },
+      default: () => 0
+    }
+  }
 }
 </script>

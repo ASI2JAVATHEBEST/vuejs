@@ -4,36 +4,36 @@ const state = () => {
   return {
     room: {
       user1: {},
-      user2: {},
+      user2: {}
     },
     selectedCards: {
       user1: {},
-      user2: {},
+      user2: {}
     },
     me: '',
     end: '',
-    endDialog: false,
+    endDialog: false
   }
 }
 
 const getters = {
-  selectedCard: (state) => (id) =>
+  selectedCard: state => id =>
     state.selectedCards[state.room.user1.id === id ? 'user1' : 'user2'] ?? {},
-  totalEnergy: (state) => (id) =>
+  totalEnergy: state => id =>
     state.room[state.current].id === id ? state.room[state.room.current] : -1,
-  isMyTurn: (state) => state.me === state.room.current,
-  canAttack: (state) =>
+  isMyTurn: state => state.me === state.room.current,
+  canAttack: state =>
     state.room[state.me].cards.find(
-      (card) => card.id === state.selectedCards[state.me].id
+      card => card.id === state.selectedCards[state.me].id
     ).currentEnergy > 0,
-  name: (state) => (id) =>
+  name: state => id =>
     state.me ? (state.room[state.me].id === id ? 'Moi' : 'Adversaire') : 'temp',
-  winner: (state) => state.end === state.me,
+  winner: state => state.end === state.me
 }
 
 const actions = {
   ...make.actions(state),
-  initSocket({ dispatch, state }) {
+  initSocket ({ dispatch, state }) {
     this._vm.$socket.$subscribe('setRoom', (room, cb) => {
       const toInit1 = typeof state.room.user1.id === 'undefined'
       const toInit2 =
@@ -49,7 +49,7 @@ const actions = {
             'SET_SELECTED_CARDS',
             'user1',
             state.room.user1.cards?.find(
-              (card) => card.id === state.selectedCards.user1.id
+              card => card.id === state.selectedCards.user1.id
             ) ?? state.room.user1.cards[0]
           )
         )
@@ -60,7 +60,7 @@ const actions = {
             'SET_SELECTED_CARDS',
             'user2',
             state.room.user2.cards?.find(
-              (card) => card.id === state.selectedCards.user2.id
+              card => card.id === state.selectedCards.user2.id
             ) ?? state.room.user2.cards[0]
           )
         )
@@ -75,37 +75,37 @@ const actions = {
       }
     })
   },
-  selectCard({ dispatch, state }, { id, card }) {
+  selectCard ({ dispatch, state }, { id, card }) {
     const user = state.room.user1.id === id ? 'user1' : 'user2'
     dispatch('setSelectedCards', new Payload('SET_SELECTED_CARDS', user, card))
   },
-  endTurn() {
+  endTurn () {
     this._vm.$socket.client.emit('endTurn', { id: this._vm.$socket.client.id })
   },
-  end({ dispatch }) {
+  end ({ dispatch }) {
     this._vm.$socket.$subscribe('end', (user, cb) => {
       dispatch('setEnd', user)
       dispatch('setEndDialog', true)
     })
   },
-  attack({ state }) {
+  attack ({ state }) {
     this._vm.$socket.client.emit('attack', {
       id: this._vm.$socket.client.id,
       from: state.selectedCards[state.room.current].id,
       to:
         state.selectedCards[state.room.current === 'user1' ? 'user2' : 'user1']
-          .id,
+          .id
     })
-  },
+  }
 }
 
 const mutations = {
-  ...make.mutations(state),
+  ...make.mutations(state)
 }
 
 export default {
   state,
   mutations,
   actions,
-  getters,
+  getters
 }
