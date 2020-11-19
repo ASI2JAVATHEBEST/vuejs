@@ -5,14 +5,14 @@
         <v-icon>fa-heartbeat</v-icon>
       </v-badge>
       <v-spacer />
-      {{ selectedCard(user).cardReference.name }}
+      {{ selectedCard(user).cardReference ? selectedCard(user).cardReference.name : '' }}
       <v-spacer />
       <v-badge left inline :content="selectedCard(user).currentEnergy" overlap>
         <v-icon>fa-bolt</v-icon>
       </v-badge>
     </v-card-title>
     <v-card-text class="pa-0">
-      <v-img :src="selectedCard(user).cardReference.imgUrl" height="200px" contain />
+      <v-img :src="selectedCard(user).cardReference ? selectedCard(user).cardReference.imgUrl : ''" height="200px" contain />
     </v-card-text>
     <v-card-text>
       <v-row>
