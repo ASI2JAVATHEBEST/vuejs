@@ -20,6 +20,10 @@ const actions = {
     this.$axios.$get('user/' + localStorage.id).then((data) => {
       dispatch('setUser', data)
       dispatch('setUsername', data.login)
+      this._vm.$socket.client.emit('setUser', {
+        id: this._vm.$socket.client.id,
+        user: data.id
+      })
     })
 
     this.$axios.$get('cards_list/' + localStorage.id).then((cards) => {
