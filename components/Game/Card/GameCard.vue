@@ -6,7 +6,7 @@
       <v-spacer />
     </v-card-title>
     <v-card-text class="pa-0">
-      <v-img :src="card.img_url" height="100px" contain />
+      <v-img :src="card.imgUrl" height="100px" contain />
     </v-card-text>
     <v-card-actions>
       {{ card.currentHp }}
