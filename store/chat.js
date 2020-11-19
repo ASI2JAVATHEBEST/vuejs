@@ -27,7 +27,11 @@ const actions = {
       cards.forEach(card =>
         promises.push(
           new Promise(resolve =>
-            this.$axios.$get('card/' + card).then(data => resolve(data))
+            this.$axios.$get('card/' + card).then((data) => {
+              data.currentHp = data.hp
+              data.currentEnergy = data.energy
+              resolve(data)
+            })
           )
         )
       )
