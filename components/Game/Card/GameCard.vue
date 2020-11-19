@@ -23,7 +23,7 @@ export default {
     card: {
       type: Object,
       default: () => {
-        return {}
+        return { cardReference: { name: 'Pikachu', imgUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/025.png' } }
       }
     },
     user: {
