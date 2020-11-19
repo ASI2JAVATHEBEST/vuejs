@@ -35,8 +35,7 @@ const actions = {
       Promise.all(promises).then((cards) => {
         this._vm.$socket.client.emit('setCards', {
           id: this._vm.$socket.client.id,
-          cards,
-          me: state.me
+          cards
         })
       })
     })
