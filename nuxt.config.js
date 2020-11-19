@@ -41,17 +41,14 @@ export default {
   ],
 
   proxy: {
-    '/socket.io': {
-      target: 'http://localhost:3001'
-    }
+    '/socket.io': 'http://localhost:3001',
+    '/user': 'http://localhost:8084',
+    '/cards_list': 'http://localhost:8082'
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
   axios: {
-    proxy: {
-      '/user': 'http://localhost:8084',
-      '/cards_list': 'http://localhost:8082'
-    }
+    proxy: true
   },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)

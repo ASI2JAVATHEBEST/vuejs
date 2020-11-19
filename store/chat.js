@@ -27,7 +27,7 @@ const actions = {
       cards.forEach(card =>
         promises.push(
           new Promise(resolve =>
-            this.$axios.$get('cards/' + card.id).then(data => resolve(data))
+            this.$axios.$get('cards/' + card).then(data => resolve(data))
           )
         )
       )
