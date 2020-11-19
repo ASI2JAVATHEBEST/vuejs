@@ -43,7 +43,7 @@ export default {
   proxy: {
     '/socket.io': 'http://localhost:3001',
     '/user': 'http://localhost:8084',
-    '/cards': 'http://localhost:8082'
+    '/card': 'http://localhost:8082'
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
