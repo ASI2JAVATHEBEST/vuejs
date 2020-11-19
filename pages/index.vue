@@ -6,7 +6,7 @@
           <v-row no-gutters>
             <v-col cols="6"> Chat </v-col>
             <v-col cols="5">
-              <v-text-field v-model="username" outlined hide-details />
+              {{ username }}
             </v-col>
             <v-col cols="1" align-self="center">
               <v-icon class="pl-2">fa-user</v-icon>

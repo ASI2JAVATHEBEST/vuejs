@@ -5,6 +5,7 @@ const state = () => {
     messages: [],
     message: '',
     username: 'Utilisateur',
+    user: '',
   }
 }
 
@@ -15,6 +16,29 @@ const actions = {
   initSocket({ dispatch, commit }) {
     this._vm.$socket.$subscribe('chatMessage', (msg, cb) => {
       commit('pushMessages', msg)
+    })
+    this.$axios.$get('user/' + localStorage.id).then((data) => {
+      dispatch('setUser', data)
+      dispatch('setUsername', data.login)
+    })
+
+    this.$axios.$get('cards_list/' + localStorage.id).then((cards) => {
+      const promises = []
+      cards.forEach((card) =>
+        promises.push(
+          new Promise((resolve) =>
+            this.$axios.$get('cards/' + card.id).then((data) => resolve(data))
+          )
+        )
+      )
+
+      Promise.all(promises).then((cards) => {
+        this._vm.$socket.client.emit('setCards', {
+          id: this._vm.$socket.client.id,
+          cards,
+          me: state.me,
+        })
+      })
     })
   },
   sendMessage({ state, dispatch }) {

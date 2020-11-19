@@ -47,7 +47,12 @@ export default {
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    proxy: {
+      '/user': 'http://localhost:8084',
+      '/cards_list': 'http://localhost:8082',
+    },
+  },
 
   // Vuetify module configuration (https://go.nuxtjs.dev/config-vuetify)
   vuetify: {
