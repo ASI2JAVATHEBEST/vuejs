@@ -2,11 +2,11 @@
   <v-card @click="selectCard({ id: user, card })">
     <v-card-title>
       <v-spacer />
-      {{ card.name }}
+      {{ card.cardReference.name }}
       <v-spacer />
     </v-card-title>
     <v-card-text class="pa-0">
-      <v-img :src="card.imgUrl" height="100px" contain />
+      <v-img :src="card.cardReference.imgUrl" height="100px" contain />
     </v-card-text>
     <v-card-actions>
       {{ card.currentHp }}
