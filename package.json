@@ -15,7 +15,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/proxy": "^2.0.1",
-    "core-js": "^3.6.5",
+    "core-js": "^3.11.0",
     "nuxt": "^2.14.6",
     "socket.io-client": "^3.0.0",
     "vue-socket.io-extended": "^4.0.5",
