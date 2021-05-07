@@ -17,7 +17,7 @@
     "@nuxtjs/proxy": "^2.0.1",
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
-    "socket.io-client": "^3.0.0",
+    "socket.io-client": "^4.0.2",
     "vue-socket.io-extended": "^4.0.5",
     "vuex-pathify": "^1.4.1"
   },
